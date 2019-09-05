@@ -1,0 +1,23 @@
+{
+  "name": "pomodobro",
+  "version": "1.0.0",
+  "description": "Pomodoro React Project @becode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktor-vi/pomodobro.git"
+  },
+  "author": "ktor-vi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ktor-vi/pomodobro/issues"
+  },
+  "homepage": "https://github.com/ktor-vi/pomodobro#readme",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
