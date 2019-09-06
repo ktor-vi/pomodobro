@@ -8,7 +8,8 @@ export default class View extends React.Component {
   render() {
     return (
       <div id="timer">
-        <div id="time">{this.props.processedTime}</div>
+        <div id="time">{this.props.displayTime}</div>
+        <div id="time">{this.props.time}</div>
         <div id="buttons">
           <button type="button" onClick={this.props.startTimer}>
             Start

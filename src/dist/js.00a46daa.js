@@ -30661,7 +30661,9 @@ function (_React$Component) {
         id: "timer"
       }, _react.default.createElement("div", {
         id: "time"
-      }, this.props.processedTime), _react.default.createElement("div", {
+      }, this.props.displayTime), _react.default.createElement("div", {
+        id: "time"
+      }, this.props.time), _react.default.createElement("div", {
         id: "buttons"
       }, _react.default.createElement("button", {
         type: "button",
@@ -30731,9 +30733,14 @@ function (_React$Component) {
     _this.state = {
       prevTime: 300,
       time: 300,
+      timeStr: "5:00",
       running: false,
-      message: "This is a message"
+      message: "This is a message" // minutes: this.state.time / 60,
+      // seconds: this.state.time % 60,
+      // timeStr: `${this.state.minutes}:${this.state.seconds}`
+
     };
+    _this.timeStr = _this.timeStr.bind(_assertThisInitialized(_this));
     _this.time = _this.time.bind(_assertThisInitialized(_this));
     _this.toggleTimer = _this.toggleTimer.bind(_assertThisInitialized(_this));
     _this.incrementTime = _this.incrementTime.bind(_assertThisInitialized(_this));
@@ -30743,16 +30750,34 @@ function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: "timeStr",
+    value: function timeStr() {
+      var zero = "0";
+      var minutes = Math.floor(this.state.time / 60);
+      var seconds = this.state.time % 60;
+      seconds < 10 ? this.setState(function (prefState) {
+        return {
+          timeStr: "".concat(minutes, ":").concat(zero).concat(seconds)
+        };
+      }) : this.setState(function (prefState) {
+        return {
+          timeStr: "".concat(minutes, ":").concat(seconds)
+        };
+      });
+    }
+  }, {
     key: "time",
     value: function time() {
       var _this2 = this;
 
       var ref = setInterval(function () {
-        _this2.state.time <= 0 ? clearInterval(ref) : _this2.setState(function (prefState) {
+        _this2.state.time <= 0 || _this2.state.running == false ? clearInterval(ref) : _this2.setState(function (prefState) {
           return {
             time: prefState.time - 1
           };
         });
+
+        _this2.timeStr();
       }, 1000);
     }
   }, {
@@ -30776,22 +30801,29 @@ function (_React$Component) {
         });
       }
 
+      this.timeStr();
       console.log(this.state.running);
+      console.log(this.state.time);
       console.log(this.state.message);
     }
   }, {
     key: "incrementTime",
     value: function incrementTime() {
+      console.log(this.state.timeStr);
       this.setState(function (prefState) {
         return {
           time: prefState.time + 300,
           prevTime: prefState.prevTime + 300
         };
       });
+      this.timeStr();
+      console.log(this.state.timeStr);
+      console.log(this.state.time);
     }
   }, {
     key: "decrementTime",
     value: function decrementTime() {
+      this.timeStr();
       this.setState(function (prefState) {
         return {
           time: prefState.time - 300,
@@ -30802,18 +30834,20 @@ function (_React$Component) {
   }, {
     key: "resetTimer",
     value: function resetTimer() {
+      this.timeStr();
       console.log("stahp");
-      this.setState(function (prefState) {
+      this.setState(function (prevState) {
         return {
           running: false,
-          time: prevTime
+          time: prevState.prevTime
         };
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, "gneh", _react.default.createElement(_view.default, {
+      return _react.default.createElement("div", null, _react.default.createElement(_view.default, {
+        displayTime: this.state.timeStr,
         startTimer: this.toggleTimer,
         incrementTime: this.incrementTime,
         decrementTime: this.decrementTime,
@@ -30867,7 +30901,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40569" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
