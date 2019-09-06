@@ -30662,8 +30662,6 @@ function (_React$Component) {
       }, _react.default.createElement("div", {
         id: "time"
       }, this.props.displayTime), _react.default.createElement("div", {
-        id: "time"
-      }, this.props.time), _react.default.createElement("div", {
         id: "buttons"
       }, _react.default.createElement("button", {
         type: "button",
@@ -30719,6 +30717,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+var format = function format(time) {
+  var timeStr = "";
+  var zero = "0";
+  var minutes = Math.floor(time / 60);
+  var seconds = time % 60;
+  seconds < 10 ? timeStr = "".concat(minutes, ":").concat(zero).concat(seconds) : timeStr = "".concat(minutes, ":").concat(seconds);
+  return timeStr;
+};
+
 var App =
 /*#__PURE__*/
 function (_React$Component) {
@@ -30731,17 +30738,11 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
-      prevTime: 300,
-      time: 300,
-      timeStr: "5:00",
+      prevTime: 1500,
+      time: 1500,
       running: false,
-      message: "This is a message" // minutes: this.state.time / 60,
-      // seconds: this.state.time % 60,
-      // timeStr: `${this.state.minutes}:${this.state.seconds}`
-
+      message: "This is a message"
     };
-    _this.timeStr = _this.timeStr.bind(_assertThisInitialized(_this));
-    _this.time = _this.time.bind(_assertThisInitialized(_this));
     _this.toggleTimer = _this.toggleTimer.bind(_assertThisInitialized(_this));
     _this.incrementTime = _this.incrementTime.bind(_assertThisInitialized(_this));
     _this.decrementTime = _this.decrementTime.bind(_assertThisInitialized(_this));
@@ -30750,22 +30751,6 @@ function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: "timeStr",
-    value: function timeStr() {
-      var zero = "0";
-      var minutes = Math.floor(this.state.time / 60);
-      var seconds = this.state.time % 60;
-      seconds < 10 ? this.setState(function (prefState) {
-        return {
-          timeStr: "".concat(minutes, ":").concat(zero).concat(seconds)
-        };
-      }) : this.setState(function (prefState) {
-        return {
-          timeStr: "".concat(minutes, ":").concat(seconds)
-        };
-      });
-    }
-  }, {
     key: "time",
     value: function time() {
       var _this2 = this;
@@ -30776,8 +30761,6 @@ function (_React$Component) {
             time: prefState.time - 1
           };
         });
-
-        _this2.timeStr();
       }, 1000);
     }
   }, {
@@ -30800,42 +30783,30 @@ function (_React$Component) {
           };
         });
       }
-
-      this.timeStr();
-      console.log(this.state.running);
-      console.log(this.state.time);
-      console.log(this.state.message);
     }
   }, {
     key: "incrementTime",
     value: function incrementTime() {
-      console.log(this.state.timeStr);
-      this.setState(function (prefState) {
+      this.state.running == false ? this.setState(function (prefState) {
         return {
           time: prefState.time + 300,
           prevTime: prefState.prevTime + 300
         };
-      });
-      this.timeStr();
-      console.log(this.state.timeStr);
-      console.log(this.state.time);
+      }) : null;
     }
   }, {
     key: "decrementTime",
     value: function decrementTime() {
-      this.timeStr();
-      this.setState(function (prefState) {
+      this.state.running == false ? this.setState(function (prefState) {
         return {
           time: prefState.time - 300,
           prevTime: prefState.prevTime - 300
         };
-      });
+      }) : null;
     }
   }, {
     key: "resetTimer",
     value: function resetTimer() {
-      this.timeStr();
-      console.log("stahp");
       this.setState(function (prevState) {
         return {
           running: false,
@@ -30847,12 +30818,11 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", null, _react.default.createElement(_view.default, {
-        displayTime: this.state.timeStr,
+        displayTime: format(this.state.time),
         startTimer: this.toggleTimer,
         incrementTime: this.incrementTime,
         decrementTime: this.decrementTime,
-        resetTimer: this.resetTimer,
-        processedTime: this.state.time
+        resetTimer: this.resetTimer
       }));
     }
   }]);
@@ -30901,7 +30871,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40569" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43831" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
