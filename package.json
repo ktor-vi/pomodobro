@@ -18,7 +18,8 @@
   "homepage": "https://github.com/ktor-vi/pomodobro#readme",
   "dependencies": {
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "view": "^1.1.1"
   },
   "devDependencies": {
     "@becode/eslint-config": "^0.6.0",

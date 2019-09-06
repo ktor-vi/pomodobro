@@ -36,7 +36,7 @@ build/Release
 node_modules/
 jspm_packages/
 dist/
-
+src/cache/
 # TypeScript v1 declaration files
 typings/
 

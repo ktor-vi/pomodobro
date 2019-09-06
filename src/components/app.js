@@ -1,5 +1,7 @@
 import React from "react";
 
+// import React, {Component} from "react";
+import View from "./view";
 const format = time => {
     let timeStr = "";
     let zero = "0";
@@ -11,6 +13,7 @@ const format = time => {
 
     return timeStr;
 };
+console.log("shitt");
 export default class App extends React.Component {
     constructor(props) {
         super(props);
