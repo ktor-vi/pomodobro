@@ -30660,6 +30660,8 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         id: "timer"
       }, _react.default.createElement("div", {
+        id: "clock"
+      }, _react.default.createElement("div", {
         id: "time"
       }, this.props.displayTime), _react.default.createElement("div", {
         id: "buttons"
@@ -30675,7 +30677,11 @@ function (_React$Component) {
       }, "-"), _react.default.createElement("button", {
         type: "button",
         onClick: this.props.resetTimer
-      }, "Reset")));
+      }, "Reset"))), _react.default.createElement("div", {
+        id: "content"
+      }, _react.default.createElement("div", {
+        id: "Title"
+      }, "Just a Pomodo, bro")));
     }
   }]);
 
@@ -30871,7 +30877,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36641" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39785" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

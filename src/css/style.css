@@ -2,6 +2,35 @@ body {
     background-color: rebeccapurple;
 }
 #time {
-    font-size: 6rem;
+    font-size: 13rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+#clock {
+    width: 30%;
+    margin: auto;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+}
+#buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 6rem;
+}
+
+#buttons button {
+    height: 25%;
+}
+#content {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#Title {
+    font-size: 5rem;
     color: white;
 }

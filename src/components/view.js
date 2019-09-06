@@ -9,20 +9,29 @@ export default class View extends React.Component {
     render() {
         return (
             <div id="timer">
-                <div id="time">{this.props.displayTime}</div>
-                <div id="buttons">
-                    <button type="button" onClick={this.props.startTimer}>
-                        Start
-                    </button>
-                    <button type="button" onClick={this.props.incrementTime}>
-                        +
-                    </button>
-                    <button type="button" onClick={this.props.decrementTime}>
-                        -
-                    </button>
-                    <button type="button" onClick={this.props.resetTimer}>
-                        Reset
-                    </button>
+                <div id="clock">
+                    <div id="time">{this.props.displayTime}</div>
+                    <div id="buttons">
+                        <button type="button" onClick={this.props.startTimer}>
+                            Start
+                        </button>
+                        <button
+                            type="button"
+                            onClick={this.props.incrementTime}>
+                            +
+                        </button>
+                        <button
+                            type="button"
+                            onClick={this.props.decrementTime}>
+                            -
+                        </button>
+                        <button type="button" onClick={this.props.resetTimer}>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+                <div id="content">
+                    <div id="Title">Just a Pomodo, bro</div>
                 </div>
             </div>
         );
