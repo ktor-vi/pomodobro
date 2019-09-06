@@ -1,27 +1,44 @@
+* {
+    font-family: Montserrat;
+}
+
 body {
-    background-color: blue;
+    background-image: linear-gradient(to bottom right, #63cdda, #786fa6);
+    min-height: 100vh;
 }
 #time {
-    font-size: 13rem;
+    font-size: 17rem;
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 #clock {
-    width: 30%;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 47%;
     margin: auto;
     margin-top: 10rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 #buttons {
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 6rem;
+    width: 10rem;
 }
 
 #buttons button {
+    color: white;
+    font-size: 2rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    height: 25%;
+}
+#buttons button:hover {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
     height: 25%;
 }
 #content {
@@ -31,6 +48,8 @@ body {
     align-items: center;
 }
 #Title {
-    font-size: 5rem;
+    margin: auto;
+    width: 47%;
+    font-size: 4.5rem;
     color: white;
 }

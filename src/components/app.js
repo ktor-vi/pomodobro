@@ -1,12 +1,13 @@
 import React from "react";
-
-// import React, {Component} from "react";
 import View from "./view";
+import Modal from "react-modal";
+import ModalComponent from "./modal";
+
 const format = time => {
     let timeStr = "";
-    let zero = "0";
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
+    const zero = "0";
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
     seconds < 10
         ? (timeStr = `${minutes}:${zero}${seconds}`)
         : (timeStr = `${minutes}:${seconds}`);
@@ -19,28 +20,66 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             prevTime: 1500,
-            time: 1500,
+            time: 3,
             running: false,
+            blockIncrement: false,
             message: "This is a message",
+            modalIsOpen: false,
         };
+        this.closeAndReset = this.closeAndReset.bind(this);
         this.toggleTimer = this.toggleTimer.bind(this);
+        this.blockIncrement = this.blockIncrement.bind(this);
         this.incrementTime = this.incrementTime.bind(this);
         this.decrementTime = this.decrementTime.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
-    }
-    time() {
-        let ref = setInterval(() => {
-            this.state.time <= 0 || this.state.running == false
-                ? clearInterval(ref)
-                : this.setState(prefState => ({
-                      time: prefState.time - 1,
-                  }));
-        }, 1000);
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
+    openModal() {
+        this.setState({
+            modalIsOpen: true,
+        });
+        this.state.modalIsOpen == true ? console.log("modal alive") : null;
+    }
+
+    afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        this.subtitle.style.color = "#f00";
+    }
+
+    closeModal() {
+        this.setState({
+            modalIsOpen: false,
+        });
+
+        console.log("modal neeeds to die");
+    }
+    closeAndReset() {
+        this.closeModal();
+        this.resetTimer();
+    }
+
+    time() {
+        const ref = setInterval(() => {
+            if (this.state.time <= 0 || this.state.running == false) {
+                clearInterval(ref);
+                this.openModal();
+            } else {
+                this.setState(prefState => ({
+                    time: prefState.time - 1,
+                }));
+            }
+        }, 1000);
+    }
+    blockIncrement() {
+        this.state.time <= 300
+            ? (this.state.blockIncrement = true)
+            : (this.state.blockIncrement = false);
+    }
     toggleTimer() {
-        let running = this.state.running;
-        console.log("yeet");
+        const running = this.state.running;
         if (running == false) {
             this.setState(() => ({
                 running: true,
@@ -53,7 +92,8 @@ export default class App extends React.Component {
         }
     }
     incrementTime() {
-        this.state.running == false
+        this.blockIncrement();
+        this.state.running == false && this.state.blockIncrement == false
             ? this.setState(prefState => ({
                   time: prefState.time + 300,
                   prevTime: prefState.prevTime + 300,
@@ -61,7 +101,8 @@ export default class App extends React.Component {
             : null;
     }
     decrementTime() {
-        this.state.running == false
+        this.blockIncrement();
+        this.state.running == false && this.state.blockIncrement == false
             ? this.setState(prefState => ({
                   time: prefState.time - 300,
                   prevTime: prefState.prevTime - 300,
@@ -80,11 +121,18 @@ export default class App extends React.Component {
         return (
             <div>
                 <View
+                    blockButton={this.blockIncrement}
                     displayTime={format(this.state.time)}
                     startTimer={this.toggleTimer}
                     incrementTime={this.incrementTime}
                     decrementTime={this.decrementTime}
                     resetTimer={this.resetTimer}
+                />{" "}
+                <ModalComponent
+                    isOpen={this.state.modalIsOpen}
+                    openModal={this.openModal}
+                    closeModal={this.closeModal}
+                    anotherOne={this.closeAndReset}
                 />
             </div>
         );

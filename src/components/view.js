@@ -1,4 +1,3 @@
-// import React, {Component} from "react";
 import React from "react";
 
 export default class View extends React.Component {
@@ -22,7 +21,8 @@ export default class View extends React.Component {
                         </button>
                         <button
                             type="button"
-                            onClick={this.props.decrementTime}>
+                            onClick={this.props.decrementTime}
+                            >
                             -
                         </button>
                         <button type="button" onClick={this.props.resetTimer}>
