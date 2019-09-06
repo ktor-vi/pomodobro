@@ -1262,7 +1262,7 @@ if ("development" !== "production") {
 
     function cloneElement(element, config, children) {
       (function () {
-        if (!!(element === null || element === undefined)) {
+        if (element === null || element === undefined) {
           {
             throw ReactError(Error('React.cloneElement(...): The argument must be a React element, but you passed ' + element + '.'));
           }
@@ -4076,7 +4076,7 @@ if ("development" !== "production") {
 
     function publishEventForPlugin(dispatchConfig, pluginModule, eventName) {
       (function () {
-        if (!!eventNameDispatchConfigs.hasOwnProperty(eventName)) {
+        if (eventNameDispatchConfigs.hasOwnProperty(eventName)) {
           {
             throw ReactError(Error('EventPluginHub: More than one plugin attempted to publish the same event name, `' + eventName + '`.'));
           }
@@ -4113,7 +4113,7 @@ if ("development" !== "production") {
 
     function publishRegistrationName(registrationName, pluginModule, eventName) {
       (function () {
-        if (!!registrationNameModules[registrationName]) {
+        if (registrationNameModules[registrationName]) {
           {
             throw ReactError(Error('EventPluginHub: More than one plugin attempted to publish the same registration name, `' + registrationName + '`.'));
           }
@@ -4179,7 +4179,7 @@ if ("development" !== "production") {
 
     function injectEventPluginOrder(injectedEventPluginOrder) {
       (function () {
-        if (!!eventPluginOrder) {
+        if (eventPluginOrder) {
           {
             throw ReactError(Error('EventPluginRegistry: Cannot inject event plugin ordering more than once. You are likely trying to load more than one copy of React.'));
           }
@@ -4214,7 +4214,7 @@ if ("development" !== "production") {
 
         if (!namesToPlugins.hasOwnProperty(pluginName) || namesToPlugins[pluginName] !== pluginModule) {
           (function () {
-            if (!!namesToPlugins[pluginName]) {
+            if (namesToPlugins[pluginName]) {
               {
                 throw ReactError(Error('EventPluginRegistry: Cannot inject two different event plugins using the same name, `' + pluginName + '`.'));
               }
@@ -4722,7 +4722,7 @@ if ("development" !== "production") {
       forEachAccumulated(processingEventQueue, executeDispatchesAndReleaseTopLevel);
 
       (function () {
-        if (!!eventQueue) {
+        if (eventQueue) {
           {
             throw ReactError(Error('processEventQueue(): Additional events were enqueued while processing an event queue. Support for this has not yet been implemented.'));
           }
@@ -7238,7 +7238,7 @@ if ("development" !== "production") {
     function sanitizeURL(url) {
       if (disableJavaScriptURLs) {
         (function () {
-          if (!!isJavaScriptProtocol.test(url)) {
+          if (isJavaScriptProtocol.test(url)) {
             {
               throw ReactError(Error('React has blocked a javascript: URL as a security precaution.' + ReactDebugCurrentFrame$1.getStackAddendum()));
             }
@@ -9117,7 +9117,7 @@ if ("development" !== "production") {
       }
 
       (function () {
-        if (!!rootEventTypesSet.has(rootEventType)) {
+        if (rootEventTypesSet.has(rootEventType)) {
           {
             throw ReactError(Error('addRootEventTypes() found a duplicate root event type of "' + rootEventType + '". This might be because the event type exists in the event responder "rootEventTypes" array or because of a previous addRootEventTypes() using this root event type.'));
           }
@@ -16960,7 +16960,7 @@ if ("development" !== "production") {
       {
         // This warning would fire if you read context inside a Hook like useMemo.
         // Unlike the class check below, it's not enforced in production for perf.
-        !!isDisallowedContextReadInDEV ? warning$1(false, 'Context can only be read while React is rendering. ' + 'In classes, you can read it in the render method or getDerivedStateFromProps. ' + 'In function components, you can read it directly in the function body, but not ' + 'inside Hooks like useReducer() or useMemo().') : void 0;
+        isDisallowedContextReadInDEV ? warning$1(false, 'Context can only be read while React is rendering. ' + 'In classes, you can read it in the render method or getDerivedStateFromProps. ' + 'In function components, you can read it directly in the function body, but not ' + 'inside Hooks like useReducer() or useMemo().') : void 0;
       }
 
       if (lastContextWithAllBitsObserved === context) {// Nothing to do. We already observe everything in this context.
@@ -19828,7 +19828,7 @@ if ("development" !== "production") {
       // numberOfReRenders = 0;
 
       (function () {
-        if (!!didRenderTooFewHooks) {
+        if (didRenderTooFewHooks) {
           {
             throw ReactError(Error('Rendered fewer hooks than expected. This may be caused by an accidental early return statement.'));
           }
@@ -22155,7 +22155,7 @@ if ("development" !== "production") {
 
     function validateFunctionComponentInDev(workInProgress, Component) {
       if (Component) {
-        !!Component.childContextTypes ? warningWithoutStack$1(false, '%s(...): childContextTypes cannot be defined on a function component.', Component.displayName || Component.name || 'Component') : void 0;
+        Component.childContextTypes ? warningWithoutStack$1(false, '%s(...): childContextTypes cannot be defined on a function component.', Component.displayName || Component.name || 'Component') : void 0;
       }
 
       if (workInProgress.ref !== null) {
@@ -23557,7 +23557,7 @@ if ("development" !== "production") {
 
         while (node !== null) {
           // eslint-disable-next-line no-labels
-          branches: if (node.tag === HostComponent) {
+          if (node.tag === HostComponent) {
             var instance = node.stateNode;
 
             if (needsVisibilityToggle && isHidden) {
@@ -23657,7 +23657,7 @@ if ("development" !== "production") {
 
         while (node !== null) {
           // eslint-disable-next-line no-labels
-          branches: if (node.tag === HostComponent) {
+          if (node.tag === HostComponent) {
             var instance = node.stateNode;
 
             if (needsVisibilityToggle && isHidden) {
@@ -30392,7 +30392,7 @@ if ("development" !== "production") {
         })();
 
         {
-          !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.hydrate() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call createRoot(container, {hydrate: true}).render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
+          container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.hydrate() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call createRoot(container, {hydrate: true}).render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
         } // TODO: throw or warn if we couldn't hydrate?
 
         return legacyRenderSubtreeIntoContainer(null, element, container, true, callback);
@@ -30407,7 +30407,7 @@ if ("development" !== "production") {
         })();
 
         {
-          !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call root.render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
+          container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.render() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. ' + 'Did you mean to call root.render(element)?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
         }
         return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
       },
@@ -30440,14 +30440,14 @@ if ("development" !== "production") {
         })();
 
         {
-          !!container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.unmountComponentAtNode() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. Did you mean to call root.unmount()?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
+          container._reactHasBeenPassedToCreateRootDEV ? warningWithoutStack$1(false, 'You are calling ReactDOM.unmountComponentAtNode() on a container that was previously ' + 'passed to ReactDOM.%s(). This is not supported. Did you mean to call root.unmount()?', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
         }
 
         if (container._reactRootContainer) {
           {
             var rootEl = getReactRootElementInContainer(container);
             var renderedByDifferentReact = rootEl && !getInstanceFromNode$1(rootEl);
-            !!renderedByDifferentReact ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
+            renderedByDifferentReact ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by another copy of React.') : void 0;
           } // Unmount should not be batched.
 
           unbatchedUpdates(function () {
@@ -30465,7 +30465,7 @@ if ("development" !== "production") {
             var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode$1(_rootEl)); // Check if the container itself is a React root node.
 
             var isContainerReactRoot = container.nodeType === ELEMENT_NODE && isValidContainer(container.parentNode) && !!container.parentNode._reactRootContainer;
-            !!hasNonRootReactChild ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
+            hasNonRootReactChild ? warningWithoutStack$1(false, "unmountComponentAtNode(): The node you're attempting to unmount " + 'was rendered by React and is not a top-level container. %s', isContainerReactRoot ? 'You may have accidentally passed in a React root node instead ' + 'of its container.' : 'Instead, have the parent component update its state and ' + 'rerender in order to remove this component.') : void 0;
           }
           return false;
         }
@@ -30533,7 +30533,7 @@ if ("development" !== "production") {
 
     function warnIfReactDOMContainerInDEV(container) {
       {
-        !!container._reactRootContainer ? warningWithoutStack$1(false, 'You are calling ReactDOM.%s() on a container that was previously ' + 'passed to ReactDOM.render(). This is not supported.', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
+        container._reactRootContainer ? warningWithoutStack$1(false, 'You are calling ReactDOM.%s() on a container that was previously ' + 'passed to ReactDOM.render(). This is not supported.', enableStableConcurrentModeAPIs ? 'createRoot' : 'unstable_createRoot') : void 0;
         container._reactHasBeenPassedToCreateRootDEV = true;
       }
     }
